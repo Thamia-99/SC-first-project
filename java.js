@@ -5,6 +5,10 @@ function search(event) {
   let h1 = document.querySelector("#current-city");
   if (selectorInput.value) {
     h1.innerHTML = `${selectorInput.value}`;
+    let key = "1ot98b2ad3d954b0b49d73e7b5f48b43";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${selectorInput.value}&key=${key}`;
+
+    axios.get(apiUrl).then(displayTemperature);
   } else {
     h1.innerHTML = null;
     alert("Please type a city");
@@ -33,8 +37,3 @@ function displayTemperature(response) {
   let currentTemperature = Math.round(response.data.temperature.current);
   h2.innerHTML = `${response.data.condition.description} ${currentTemperature}°C`;
 }
-let key = "1ot98b2ad3d954b0b49d73e7b5f48b43";
-let city = "Sydney";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
-
-axios.get(apiUrl).then(displayTemperature);
