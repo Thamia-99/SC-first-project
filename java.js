@@ -1,8 +1,8 @@
 function search(event) {
   event.preventDefault();
-  let selectorInput = document.querySelector("#selector-name");
+  let selectorInput = document.querySelector("#search-input");
 
-  let h1 = document.querySelector("h1");
+  let h1 = document.querySelector("#current-city");
   if (selectorInput.value) {
     h1.innerHTML = `${selectorInput.value}`;
   } else {
@@ -16,7 +16,7 @@ form.addEventListener("submit", search);
 
 let now = new Date();
 
-let h3 = document.querySelector("h3");
+let h3 = document.querySelector("#current-date");
 
 let date = now.getDate();
 let hours = now.getHours();
@@ -29,7 +29,7 @@ h3.innerHTML = `${day} ${hours}:${minutes}, moderate rain `;
 
 function displayTemperature(response) {
   console.log(response.data);
-  let h2 = document.querySelector("h2");
+  let h2 = document.querySelector("#current-temperature");
   let currentTemperature = Math.round(response.data.temperature.current);
   h2.innerHTML = `${response.data.condition.description} ${currentTemperature}°C`;
 }
@@ -38,4 +38,3 @@ let city = "Sydney";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}`;
 
 axios.get(apiUrl).then(displayTemperature);
-
